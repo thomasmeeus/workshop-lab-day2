@@ -1,0 +1,7 @@
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: project-resource-quota
+spec:
+  hard:
+    pods: '1'
