@@ -116,7 +116,8 @@ oc get events
 Confirm that:
 
 * The pod starts successfully
-* The endpoint works:
+
+Attempt to access the route:
 
 ```
 curl http://<route>/quotes/random
@@ -173,6 +174,8 @@ Verify the endpoint works:
 curl http://<route>/quotes/random
 ```
 
+Verify the output in your terminal or browser and note that we're receiving a new quote on each refresh. The hostname of the pod is also displayed.
+
 ## 7. Deploy the Frontend Web Application
 
 Apply the frontend manifests:
@@ -214,6 +217,7 @@ Fix the quota:
 ```
 oc edit quota <name>
 ```
+Note that we can increase the current quota to a higher value, but also delete it.
 
 After adjusting resources, restart the deployment. This is not necessarily needed, but speeds up detection by the scheduler:
 
@@ -230,7 +234,13 @@ oc get pods
 
 ## 9. Use the Frontend Application
 
-Open the frontend route and test the UI.
+Display the available routes and browse to the frontend route:
+
+``
+oc get routes
+```
+
+Verify that the UI loads and is functional.
 
 Enter the backend URL into the form:
 
@@ -239,7 +249,6 @@ http://<backend-route>/quotes/random
 ```
 
 You should now see quotes displayed through the frontend.
-
 
 
 Inspired by: https://github.com/redhat-developer-demos/qotd-python & 
