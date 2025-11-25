@@ -5,12 +5,14 @@ You will deploy a backend Python service that serves random quotes, and a fronte
 
 The lab is intentionally broken in several places so you can practice diagnosing and resolving real-world issues.
 
+The guide will primarily focus on executing tasks via CLI, but don't hesitate to have a look via the web interface. Sometimes this can provide a better overview!
+
 ## 1. Create a New Project
 
 Create a dedicated project for your work:
 
 ```
-oc new-project quotes-$USER
+oc new-project qotd-$USER
 ```
 
 Verify:
@@ -32,10 +34,9 @@ Before deploying, inspect the manifests provided in the k8s directory:
 Deploy the backend components:
 
 ```
-oc apply -f qotd-python/k8s/quota.yaml
-oc apply -f qotd-python/k8s/quotes-deployment.yaml
-oc apply -f qotd-python/k8s/route.yaml
-oc apply -f qotd-python/k8s/service.yaml
+oc apply -f backend/k8s/deployment.yaml
+oc apply -f backend/k8s/route.yaml
+oc apply -f backend/k8s/service.yaml
 ```
 
 The backend endpoint is expected at:
@@ -95,13 +96,13 @@ Browse to the referenced registry and inspect the available image tags.
 Edit the deployment manifest:
 
 ```
-vi qotd-python/k8s/quotes-deployment.yaml
+vi backend/k8s/deployment.yaml
 ```
 
 After fixing:
 
 ```
-oc apply -f qotd-python/k8s/quotes-deployment.yaml
+oc apply -f backend/k8s/deployment.yaml
 ```
 
 Validate:
@@ -177,9 +178,10 @@ curl http://<route>/quotes/random
 Apply the frontend manifests:
 
 ```
-oc apply -f quotesweb/k8s/quotes-deployment.yaml
-oc apply -f quotesweb/k8s/route.yaml
-oc apply -f quotesweb/k8s/service.yaml
+oc apply -f frontend/k8s/quota.yaml
+oc apply -f frontend/k8s/deployment.yaml
+oc apply -f frontend/k8s/route.yaml
+oc apply -f frontend/k8s/service.yaml
 ```
 
 Validate the deployment
@@ -213,10 +215,10 @@ Fix the quota:
 oc edit quota <name>
 ```
 
-After adjusting resources, restart the deployment. This is not necessariliy needed, but speeds up detection by the scheduler:
+After adjusting resources, restart the deployment. This is not necessarily needed, but speeds up detection by the scheduler:
 
 ```
-oc rollout restart deployment/quotesweb
+oc rollout restart deployment/qotd-frontend
 ```
 
 

@@ -5,7 +5,7 @@ metadata:
     app: quotes
     sandbox: learn-kubernetes
     learn-kubernetes: quotes
-  name: quotes
+  name: qotd-backend
 spec:
   ports:
   - name: 10000-tcp
@@ -21,6 +21,6 @@ spec:
     protocol: TCP
     targetPort: 8778
   selector:
-    app: qwuotes
+    app: qtod-backend
   sessionAffinity: None
   type: ClusterIP

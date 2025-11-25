@@ -5,10 +5,10 @@ metadata:
     app: quotes
     sandbox: learn-kubernetes
     learn-kubernetes: quotes
-  name: quotes
+  name: qotd-backend
 spec:
   port:
     targetPort: 10000-tcp
   to:
     kind: Service
-    name: quotes
+    name: qotd-backend

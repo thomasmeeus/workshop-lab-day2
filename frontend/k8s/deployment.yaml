@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: quotesweb
+  name: qotd-frontend
   labels:
-    app: quotesweb
+    app: qotd-frontend
     sandbox: learn-kubernetes
     learn-kubernetes: quotesweb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quotesweb
+      app: qotd-frontend
   template:
     metadata:
       labels:
-        app: quotesweb
+        app: qotd-frontend
     spec:
       containers:
         - name: quotes

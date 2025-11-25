@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: quotes
+  name: qotd-backend
   labels:
-    app: quotes
+    app: qotd-backend
     sandbox: learn-kubernetes
     learn-kubernetes: quotes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quotes
+      app: qotd-backend
   template:
     metadata:
       labels:
-        app: quotes
+        app: qotd-backend
     spec:
       containers:
         - name: quotes
