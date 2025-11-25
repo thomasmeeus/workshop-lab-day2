@@ -236,7 +236,7 @@ oc get pods
 
 Display the available routes and browse to the frontend route:
 
-``
+```
 oc get routes
 ```
 
@@ -250,5 +250,16 @@ http://<backend-route>/quotes/random
 
 You should now see quotes displayed through the frontend.
 
+## 10. Scale the Backend Application
+
+Scale the Backend Application to 2 or 3 pods and verify that the hostname listed in the webpage is different on each request.
+
+## 11. Cleanup
+
+Remove your project.
+
+```
+oc delete project qotd-$USER
+```
 
 Inspired by: https://github.com/redhat-developer-demos/qotd-python & 
